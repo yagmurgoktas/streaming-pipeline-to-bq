@@ -1,0 +1,15 @@
+{
+  "name": "streaming-pipeline-to-bq",
+  "version": "1.0.0",
+  "description": "A small data pipeline web service with Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yagmurgoktas/streaming-pipeline-to-bq.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
