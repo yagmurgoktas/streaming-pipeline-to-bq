@@ -4,12 +4,18 @@
   "description": "A small data pipeline web service with Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/app.js",
+    "clean": "rm -rf build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yagmurgoktas/streaming-pipeline-to-bq.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.18.2",
+    "@google-cloud/pubsub": "3.7.1"
+  }
 }
