@@ -2,8 +2,12 @@ const { BigQuery } = require('@google-cloud/bigquery');
 const { getAnalytics, getTotalUsers } = require('../queries/analytics-queries');
 require('dotenv').config();
 
+const keyFileContent = process.env.KEY_FILE ?? ''
+const keyFileJson = Buffer.from(keyFileContent, 'base64').toString('utf-8');
+    
+const credentials = JSON.parse(keyFileJson);
 const options = {
-    keyFilename: process.env.KEY_FILE_NAME ?? '',
+    credentials,
     projectId: process.env.PROJECT_ID ?? ''
 };
 const bigquery = new BigQuery(options);
@@ -16,7 +20,6 @@ async function fetchAnalyticsData() {
 
     const query2 = {
       query: getAnalytics,
-      // Location must match that of the dataset(s) referenced in the query.
       location: 'eu',
     };
     const [totalUsersJob] = await bigquery.createQueryJob(query1);

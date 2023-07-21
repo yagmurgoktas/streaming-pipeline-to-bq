@@ -1,9 +1,13 @@
 const { PubSub } = require('@google-cloud/pubsub');
 require('dotenv').config();
 
+const keyFileContent = process.env.KEY_FILE ?? ''
+const keyFileJson = Buffer.from(keyFileContent, 'base64').toString('utf-8');
+    
+const credentials = JSON.parse(keyFileJson);
 const options = {
-  keyFilename: process.env.KEY_FILE_NAME ?? '',
-  projectId: process.env.PROJECT_ID ?? ''
+    credentials,
+    projectId: process.env.PROJECT_ID ?? ''
 };
 
 const pubSubClient = new PubSub(options);
