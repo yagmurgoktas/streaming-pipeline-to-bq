@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streaming-pipeline-app
+  labels:
+    app: streaming-pipeline-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: streaming-pipeline-app
+  template:
+    metadata:
+      labels:
+        app: streaming-pipeline-app
+    spec:
+      containers:
+        - name: streaming-pipeline-app
+          image: gcr.io/codeway-case-study-393317/streaming-pipeline-app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 4000

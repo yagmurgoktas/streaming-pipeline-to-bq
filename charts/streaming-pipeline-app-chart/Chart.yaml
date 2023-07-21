@@ -1,0 +1,4 @@
+apiVersion: v2
+name: streaming-pipeline-app
+version: 1.0.0
+description: A Helm chart to deploy my streaming pipeline application

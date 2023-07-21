@@ -1,0 +1,10 @@
+replicaCount: 2
+image:
+  repository: gcr.io/codeway-case-study-393317/streaming-pipeline-app
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  port: 4000
+  targetPort: 4000
+ingress:
+  enabled: false
