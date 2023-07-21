@@ -16,7 +16,28 @@ spec:
     spec:
       containers:
         - name: streaming-pipeline-app
-          image: gcr.io/codeway-case-study-393317/streaming-pipeline-app:latest
+          image: gcr.io/codeway-case-study-393317/streaming-pipeline-app:2.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 4000
+          env:
+            - name: PROJECT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: project-id
+                  name: project-id-secret
+            - name: PUBSUB_TOPIC_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: pubsub-topic-name
+                  name: pubsub-secret
+            - name: TABLE_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: table-name
+                  name: table-secret
+            - name: KEY_FILE
+              valueFrom:
+                secretKeyRef:
+                  key: key-file
+                  name: key-file-secret
