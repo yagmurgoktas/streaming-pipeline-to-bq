@@ -44,6 +44,12 @@ This is a Node.js data pipeline web service that collects event logs from mobile
 
 ## Architecture
 
+Flow diagram of the project
+
+![Flow Architecture](./public/flow.jpg "Flow Architecture")
+
+Google DataFlow diagram of the project
+
 ![DataFlow Architecture](./public/dataflow.jpg "DataFlow Architecture")
 
 ## API Endpoints
