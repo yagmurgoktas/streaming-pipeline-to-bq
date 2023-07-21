@@ -96,9 +96,13 @@ To deploy the Node.js data pipeline web service to Kubernetes (GKE), follow thes
 1.  Create a Google Kubernetes Engine (GKE) cluster if you haven't already.
 2.  Install Helm on your local machine if you haven't already.
 3.  Update the values in the `values.yaml` file to match your deployment configuration.
-4.  Install the Helm chart with the following command:
+4.  Install the Helm chart with the following command if you don't have any deployment:
 
-`helm install codeway-case-release ./charts/streaming-pipeline-app-chart --values values.yaml` 
+`helm install codeway-case-release ./charts/streaming-pipeline-app-chart --values values.yaml`
+
+5. If you have a deployment already, use the following command:
+
+`helm upgrade codeway-case-release ./charts/streaming-pipeline-app-chart`
 
 ## Contributing
 
