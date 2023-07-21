@@ -42,6 +42,10 @@ This is a Node.js data pipeline web service that collects event logs from mobile
 
 5.  To deploy the service to Kubernetes, follow the steps in the "Kubernetes Deployment" section below.
 
+## Architecture
+
+![DataFlow Architecture](./public/dataflow.jpg "DataFlow Architecture")
+
 ## API Endpoints
 
 ### POST /logs
