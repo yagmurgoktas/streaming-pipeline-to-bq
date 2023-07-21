@@ -1,0 +1,76 @@
+const getAnalytics = `
+
+create temp table active_users as
+(select 
+  date(event_time) as date, 
+  count(
+    distinct(user_id)
+  ) as active_user_count
+from 
+  codeway.codeway 
+group by 
+  date(event_time)
+);
+
+create temp table new_users as
+(select 
+  event_date as date, 
+  count(*) as new_user_count 
+from 
+  (
+    select 
+      user_id, 
+      min(
+        date(event_time)
+      ) as event_date 
+    from 
+      codeway.codeway 
+    group by 
+      user_id
+  ) 
+group by 
+  event_date);
+
+create temp table average_session as
+(
+  select 
+  session_date as date, 
+  avg(session_duration) as average_session_duration
+from 
+  (
+    select 
+      session_id, 
+      date(
+        min(event_time)
+      ) session_date, 
+      TIMESTAMP_DIFF(
+        max(event_time), 
+        min(event_time), 
+        SECOND
+      ) session_duration 
+    from 
+      codeway.codeway 
+    group by 
+      session_id
+  ) 
+group by 
+  session_date
+);
+
+select FORMAT_DATE('%d/%m/%Y', au.date) as date,coalesce(new_user_count,0) as new_user_count,active_user_count,coalesce(average_session_duration,0) as average_session_duration from active_users au
+left join new_users nu on au.date = nu.date
+left join average_session avs on au.date = avs.date
+order by au.date asc;
+`
+const getTotalUsers = `
+select 
+  count(
+    distinct(user_id)
+  ) as total_users 
+from 
+  codeway.codeway;
+`
+module.exports = {
+    getAnalytics,
+    getTotalUsers
+};
